@@ -1,6 +1,20 @@
 # All-Repositories-With-Topics
 GitHub Enterprise server can generate a CSV of all repositories, but it is missing the topics of those repos. This tool helps with that.
 
+## Purpose
+
+The All Repositories report is a CSV like this
+```csv
+created_at,owner_id,owner_type,owner_name,id,name,visibility,readable_size,raw_size,collaborators,fork?,deleted?
+2023-02-01 15:48:05 +0000,5,Organization,Org1,5,repo5,private,0 Bytes,0,0,false,false
+```
+
+but what if you want the topics as well for each of those repos?
+```csv
+created_at,owner_id,owner_type,owner_name,id,name,visibility,readable_size,raw_size,collaborators,fork?,deleted?,topics
+2023-02-01 15:49:55 +0000,5,Organization,Org1,5,repo5,private,0 Bytes,0,0,false,false,"classified,duplicate,emea,support"
+```
+
 ## Usage
 
 ## Install cli tool
