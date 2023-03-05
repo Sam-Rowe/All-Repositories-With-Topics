@@ -11,7 +11,7 @@ def usage
   puts "This script will generate a JWT and use it to get an installation access token for a github app"
   puts "3 environment variables must be set:"
   puts "APP_SLUG - the app slug of the github app"
-  puts "URL_OF_GITHUB_ENTERPRISE - the url of the github enterprise server"
+  puts "GHES_URL - the url of the github enterprise server"
   puts "PRIVATE_KEY_FILE - the path to the private key file for the GitHub app"
 end
 
@@ -19,24 +19,22 @@ end
 if (ENV["APP_SLUG"]) then
   App_slug = ENV["APP_SLUG"]
 else
-  App_slug = ""
+  usage()
+  exit 1
 end
-if (ENV["URL_OF_GITHUB_ENTERPRISE"]) then
-  Url_of_github_enterprise = ENV["URL_OF_GITHUB_ENTERPRISE"]
+if (ENV["GHES_URL"]) then
+  Url_of_github_enterprise = "https://#{ENV["GHES_URL"]}"
 else
-  Url_of_github_enterprise = ""
+  usage()
+  exit 1
 end
 if (ENV["PRIVATE_KEY_FILE"]) then
   Private_key_file = ENV["PRIVATE_KEY_FILE"]
 else
-  Private_key_file = ""
-end
-
-# If App_slug is not set or is empty then exit with a message and an error code
-if (App_slug == "" || Private_key_file == "" || Url_of_github_enterprise = "" ) then
   usage()
   exit 1
 end
+
 
 # Private key contents
 private_pem = File.read(Private_key_file)
